@@ -11,7 +11,9 @@ def get_countries():
     response = requests.get(f"https://restcountries.com/v3.1/countries")
     if response.status_code != 200:
         return jsonify({"error": "no countries found"}), 404
-    return jsonify(response.json())
+    country_data = response.json()
+    return jsonify(country_data)
+    
 
 
 
@@ -19,7 +21,7 @@ def get_countries():
 
 @app.route('/countries/<country_name>', methods=['GET'])
 def get_country_by_name(country_name):
-    response = requests.get(f"https://restcountries.com/v3.1/name/{country_name}")
+    response = requests.get(f"https://restcountries.com/v3.1/countries/{country_name}")
     if response.status_code != 200:
         return jsonify({"error": "no country found"}), 404
     return jsonify(response.json())
