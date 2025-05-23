@@ -8,7 +8,7 @@ API_URL = 'https://restcountries.com/v3.1'
 @app.route('/countries', methods=['GET'])
 
 def get_countries():
-    response = requests.get(f"https://restcountries.com/v3.1/countries")
+    response = requests.get(f"https://restcountries.com/v3.1/all")
     if response.status_code != 200:
         return jsonify({"error": "no countries found"}), 404
     country_data = response.json()
@@ -21,7 +21,7 @@ def get_countries():
 
 @app.route('/countries/<country_name>', methods=['GET'])
 def get_country_by_name(country_name):
-    response = requests.get(f"https://restcountries.com/v3.1/countries/{country_name}")
+    response = requests.get(f"https://restcountries.com/v3.1/country_name{country_name}")
     if response.status_code != 200:
         return jsonify({"error": "no country found"}), 404
     return jsonify(response.json())
